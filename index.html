@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="angularMemoryGameApp">
+  <head>
+    <title>angularMemoryGame</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <div ng-controller="GameController as gameCtrl">
+      <div>Pairs left to match: {{gameCtrl.game.unmatchedPairs}}</div>
+      <br />
+      <table>
+        <tr ng-repeat="row in gameCtrl.game.grid">
+          <td ng-repeat="tile in row" class="container">
+            <div class="card" ng-class="{flipped: tile.flipped}" ng-click="gameCtrl.game.flipTile(tile)">
+              <img class="front" src="images/back.png">
+              <img class="back" ng-src="images/{{tile.title}}.png">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="message">{{gameCtrl.game.message}}</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/game.js"></script>
+    <script src="scripts/services/memory-game.js"></script>
+  </body>
+</html>
